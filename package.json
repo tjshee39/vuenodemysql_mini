@@ -1,49 +1,82 @@
 {
-  "name": "vuenodemysql",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "core-js": "^3.8.3",
-    "vue": "^2.6.14",
-    "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
-    "vue-template-compiler": "^2.6.14"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+	"name": "vuenodemysql",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"clean": "rimraf dist",
+		"start": "nodemon ./server/index.js",
+		"serve": "webpack-dev-server --mode development",
+		"build": "npm run clean && webpack --mode production",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"@babel/polyfill": "^7.12.1",
+		"core-js": "^3.8.3",
+		"html-webpack-plugin": "^5.5.0",
+		"mini-css-extract-plugin": "^2.7.5",
+		"rimraf": "^5.0.0",
+		"vue": "^2.6.14",
+		"vue-loader": "^15.10.1",
+		"vue-router": "^3.5.1",
+		"vuex": "^3.6.2",
+		"webpack": "^5.78.0",
+		"webpack-cli": "^5.0.1",
+		"webpack-dev-server": "^4.13.2"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.16",
+		"@babel/eslint-parser": "^7.12.16",
+		"@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+		"@babel/preset-env": "^7.21.4",
+		"@vue/cli-plugin-babel": "~5.0.0",
+		"@vue/cli-plugin-eslint": "~5.0.0",
+		"@vue/cli-plugin-router": "~5.0.0",
+		"@vue/cli-plugin-vuex": "~5.0.0",
+		"@vue/cli-service": "~5.0.0",
+		"axios": "^1.3.5",
+		"babel-loader": "^9.1.2",
+		"cors": "^2.8.5",
+		"css-loader": "^6.7.3",
+		"eslint": "^8.2.0",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-import": "^2.25.3",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-react": "^7.28.0",
+		"eslint-plugin-react-hooks": "^4.3.0",
+		"eslint-plugin-vue": "^8.0.3",
+		"express": "^4.18.2",
+		"file-loader": "^6.2.0",
+		"mysql": "^2.18.1",
+		"mysql2": "^3.2.0",
+		"nodemon": "^2.0.22",
+		"prettier": "2.8.7",
+		"process": "^0.11.10",
+		"sass": "^1.32.7",
+		"sass-loader": "^12.0.0",
+		"vue-style-loader": "^4.1.3",
+		"vue-template-compiler": "^2.7.14"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true,
+			"browser": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"parser": "@babel/eslint-parser",
+			"allowImportExportEverywhere": true
+		},
+		"rules": {}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
 }
