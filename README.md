@@ -15,6 +15,11 @@ npm run serve
 npm run build
 ```
 
+### Connect Database
+```
+npm run start
+```
+
 ### Lints and fixes files
 ```
 npm run lint
