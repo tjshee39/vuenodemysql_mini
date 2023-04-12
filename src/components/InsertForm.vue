@@ -1,29 +1,42 @@
 <template>
-	<div class="hello">
+	<div class="insertform">
 		<h1>{{ msg }}</h1>
-		<p>
-			DML(Data Multipulation Language)<br />
-			SELECT, <span id="insert">INSERT</span>, UPDATE, DELETE
-		</p>
+		<p>DML(Data Multipulation Language)</p>
+		<p>:SELECT, <span id="insert">INSERT</span>, UPDATE, DELETE</p>
 
 		<div class="input_form">
-			<div id="input_form_name">
-				name: <input type="text" v-model="name" /><br />
-			</div>
-			<div id="input_form_age">age: <input type="number" v-model="age" /></div>
-			<button id="btn_insert" @click="insertData()">확인</button>
+			<table>
+				<tr>
+					<td>name</td>
+					<td><input type="text" v-model="name" /></td>
+				</tr>
+				<tr>
+					<td>age</td>
+					<td>
+						<input type="number" min="0" v-model="age" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button id="btn_insert" @click="insertData()">확인</button>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'HelloWorld',
+	name: 'InsertForm',
 	props: {
 		msg: String,
 	},
 	data() {
-		return {};
+		return {
+			name: '',
+			age: 0,
+		};
 	},
 	methods: {
 		async insertData() {
@@ -31,12 +44,14 @@ export default {
 			console.log('age: ', this.age);
 
 			this.$axios
-				.post('http://localhost:8000/insertNameAge', {
+				.post('callapi/insert-nameage', {
 					name: this.name,
 					age: this.age,
 				})
 				.then(res => {
 					console.log(res);
+
+					// window.location.href = '/name-age-list';
 				});
 		},
 	},
@@ -61,15 +76,11 @@ a {
 }
 #insert {
 	color: red;
+	font-weight: bold;
 }
 .input_form {
 	margin: auto;
-	justify-content: center;
 	width: 200px;
-}
-#input_form_name,
-#input_form_age {
-	margin-bottom: 10px;
 }
 input {
 	height: 20px;

@@ -37,5 +37,13 @@ module.exports = {
 		'no-unused-vars': 1,
 		'no-use-before-define': 1,
 		'no-redeclare': 1,
+		'import/no-unresolved': 'off',
+	},
+	settings: {
+		'import/resolver': {
+			node: {
+				paths: ['src'],
+			},
+		},
 	},
 };

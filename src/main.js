@@ -1,11 +1,10 @@
 import Vue from 'vue';
+import axios from 'axios';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import '@babel/polyfill';
-import axios from 'axios';
 
-Vue.use(axios);
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 
