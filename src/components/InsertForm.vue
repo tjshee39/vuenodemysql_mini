@@ -86,7 +86,13 @@ a {
 input {
 	height: 20px;
 }
-#btn_insert {
+button {
+	background-color: #42b983;
+	border-radius: 5px;
+	border: 1px solid;
+}
+#btn_insert,
+#btn_delete {
 	float: right;
 }
 </style>

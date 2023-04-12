@@ -7,7 +7,11 @@
 				<th style="border-top-right-radius: 10px">age</th>
 			</thead>
 			<tbody>
-				<tr v-for="(data01, index01) in dataList" :key="index01">
+				<tr
+					v-for="(data01, index01) in dataList"
+					:key="index01"
+					@click="moveToInfo(data01.id)"
+				>
 					<td v-for="(data02, index02) in data01" :key="index02">
 						{{ data02 }}
 					</td>
@@ -31,7 +35,7 @@ export default {
 	methods: {
 		async getData() {
 			this.$axios
-				.get('callapi/nameage-list')
+				.get('/callapi/nameage-list')
 				.then(res => {
 					return res.data;
 				})
@@ -39,6 +43,9 @@ export default {
 					console.log('data', data);
 					this.dataList = data;
 				});
+		},
+		async moveToInfo(id) {
+			this.$router.push({ name: 'name-age-info', params: { id } });
 		},
 	},
 };

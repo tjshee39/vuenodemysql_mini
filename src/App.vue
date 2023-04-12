@@ -2,8 +2,7 @@
 	<div id="app">
 		<nav>
 			<router-link to="/">Insert</router-link> |
-			<router-link to="/name-age-list">List</router-link> |
-			<router-link to="/page-not-found">404</router-link>
+			<router-link to="/name-age-list">List</router-link>
 		</nav>
 		<router-view />
 	</div>

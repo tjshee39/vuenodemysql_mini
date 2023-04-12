@@ -1,6 +1,6 @@
 <template>
 	<div class="name-age-list">
-		<NameAgeList msg="NameAgeList" />
+		<NameAgeList msg="NAME AGE LIST" />
 	</div>
 </template>
 

@@ -9,21 +9,6 @@ const corsOptions = {
 	credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 };
 
-router.get('/nameage-list', async function (req, res) {
-	try {
-		const sqlQuery = 'SELECT * FROM NAMEAGE;';
-
-		db.query(sqlQuery, (err, result) => {
-			res.send(result);
-		});
-	} catch (e) {
-		res.json({
-			message: 'insert error',
-			error: e,
-		});
-	}
-});
-
 router.post('/insert-nameage', async function (req, res) {
 	try {
 		console.log('=======================================');
@@ -39,6 +24,85 @@ router.post('/insert-nameage', async function (req, res) {
 	} catch (e) {
 		res.json({
 			message: 'insert error',
+			error: e,
+		});
+	}
+});
+
+router.get('/nameage-list', async function (req, res) {
+	try {
+		console.log('=======================================');
+		console.log('nameage-list');
+
+		const sqlQuery = 'SELECT * FROM NAMEAGE;';
+
+		db.query(sqlQuery, (err, result) => {
+			res.send(result);
+		});
+	} catch (e) {
+		res.json({
+			message: 'select error',
+			error: e,
+		});
+	}
+});
+
+router.get('/nameage-info/:id', async function (req, res) {
+	try {
+		console.log('=======================================');
+		console.log('nameage-info', req.params);
+
+		const { id } = req.params;
+		const sqlQuery = `SELECT * FROM NAMEAGE WHERE id=${id};`;
+
+		db.query(sqlQuery, (err, result) => {
+			console.log(result);
+			res.send(result);
+		});
+	} catch (e) {
+		res.json({
+			message: 'select error',
+			error: e,
+		});
+	}
+});
+
+router.post('/update-nameage/:id', async function (req, res) {
+	try {
+		console.log('=======================================');
+		console.log('update-nameage', req.body);
+
+		const { id } = req.params;
+		const nameAge = [req.body.name, req.body.age];
+
+		const sqlQuery = `UPDATE NAMEAGE SET NAME=?, AGE=? WHERE id=${id}`;
+
+		db.query(sqlQuery, nameAge, (err, result) => {
+			res.send(result);
+		});
+	} catch (e) {
+		res.json({
+			message: 'update error',
+			error: e,
+		});
+	}
+});
+
+router.post('/delete-nameage/:id', async function (req, res) {
+	try {
+		console.log('=======================================');
+		console.log('delete-nameage', req.params);
+
+		const { id } = req.params;
+
+		const sqlQuery = `DELETE FROM NAMEAGE WHERE id=${id}`;
+
+		db.query(sqlQuery, (err, result) => {
+			res.send(result);
+		});
+	} catch (e) {
+		res.json({
+			message: 'delete error',
 			error: e,
 		});
 	}
