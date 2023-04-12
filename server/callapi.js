@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const history = require('connect-history-api-fallback');
 
 const db = require('./db');
@@ -18,30 +18,44 @@ const corsOptions = {
 };
 
 // router.use(cors(corsOptions));
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+// router.use(bodyParser.urlencoded({ extended: true }));
+// router.use(bodyParser.json());
 router.use(history());
 // app.use(express.static(path.join(__dirname, 'public')));
 
 router.get('/nameage-list', async function (req, res) {
-	const sqlQuery = 'SELECT * FROM NAMEAGE;';
+	try {
+		const sqlQuery = 'SELECT * FROM NAMEAGE;';
 
-	db.query(sqlQuery, (err, result) => {
-		res.send(result);
-	});
+		db.query(sqlQuery, (err, result) => {
+			res.send(result);
+		});
+	} catch (e) {
+		res.json({
+			message: 'insert error',
+			error: e,
+		});
+	}
 });
 
 router.post('/insert-nameage', async function (req, res) {
-	console.log('========================');
-	console.log('insertNameAge', req.body);
+	try {
+		console.log('=======================================');
+		console.log('insert-nameage', req.body);
 
-	const nameAge = [req.body.name, req.body.age];
+		const nameAge = [req.body.name, req.body.age];
 
-	const sqlQuery = 'INSERT INTO NAMEAGE(NAME, AGE) VALUES(?, ?);';
+		const sqlQuery = 'INSERT INTO NAMEAGE(NAME, AGE) VALUES(?, ?);';
 
-	db.query(sqlQuery, nameAge, (err, result) => {
-		res.send(result);
-	});
+		db.query(sqlQuery, nameAge, (err, result) => {
+			res.send(result);
+		});
+	} catch (e) {
+		res.json({
+			message: 'insert error',
+			error: e,
+		});
+	}
 });
 
 module.exports = router;

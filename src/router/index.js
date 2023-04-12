@@ -2,18 +2,17 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import InsertView from '@/views/InsertView.vue';
 import NameAgeListView from '@/views/NameAgeListView.vue';
+import PageNotFoundView from '@/views/PageNotFoundView.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
 	{
-		mode: 'history',
 		path: '/',
 		name: 'insert',
 		component: InsertView,
 	},
 	{
-		mode: 'history',
 		path: '/name-age-list',
 		name: 'name-age-list',
 		component: NameAgeListView,
@@ -23,18 +22,15 @@ const routes = [
 		// component: () =>
 		// 	import(/* webpackChunkName: "about" */ '../views/NameAgeList.vue'),
 	},
-	// {
-	// 	mode: 'history',
-	// 	routes: [
-	// 		{ path: '/', name: 'insert', component: InsertView },
-	// 		{
-	// 			path: '/name-age-list',
-	// 			name: 'name-age-list',
-	// 			component: NameAgeListView,
-	// 		},
-	// 		{ path: '*', redirect: '/' },
-	// 	],
-	// },
+	{
+		path: '/404',
+		name: 'page-not-found',
+		component: PageNotFoundView,
+	},
+	{
+		path: '*',
+		redirect: '/404',
+	},
 ];
 
 const router = new VueRouter({

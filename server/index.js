@@ -1,7 +1,8 @@
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
+// !!! express ver <4.16
+// const bodyParser = require('body-parser');
 const history = require('connect-history-api-fallback');
 
 const callapi = require('./callapi');
@@ -20,12 +21,17 @@ const corsOptions = {
 	credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 };
 
-app.use('/callapi', callapi);
 app.use(cors(corsOptions));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+/* !!! express ver < 4.16
+ * app.use(bodyParser.urlencoded({ extended: true }));
+ * app.use(bodyParser.json());
+ */
+app.use(express.urlencoded({ extended: true })); // express ver > 4.16
+app.use(express.json()); // express ver > 4.16
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/callapi', callapi);
 
 // app.get('/nameage-list', async function (req, res) {
 // 	const sqlQuery = 'SELECT * FROM NAMEAGE;';
