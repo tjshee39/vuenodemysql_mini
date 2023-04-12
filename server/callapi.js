@@ -1,27 +1,13 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
-const history = require('connect-history-api-fallback');
 
 const db = require('./db');
 
 const router = express.Router();
 
-// const PORT = process.env.port || 8000;
-
-// router.listen(PORT, () => {
-// 	console.log(`running on port ${PORT}`);
-// });
-
 const corsOptions = {
 	origin: '*', // 출처 허용 옵션
 	credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 };
-
-// router.use(cors(corsOptions));
-// router.use(bodyParser.urlencoded({ extended: true }));
-// router.use(bodyParser.json());
-router.use(history());
-// app.use(express.static(path.join(__dirname, 'public')));
 
 router.get('/nameage-list', async function (req, res) {
 	try {

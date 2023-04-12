@@ -51,7 +51,8 @@ export default {
 				.then(res => {
 					console.log(res);
 
-					// window.location.href = '/name-age-list';
+					// 완료 시 목록 페이지로 이동
+					window.location.href = '/name-age-list';
 				});
 		},
 	},

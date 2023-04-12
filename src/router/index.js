@@ -28,7 +28,7 @@ const routes = [
 		component: PageNotFoundView,
 	},
 	{
-		path: '*',
+		path: '/*',
 		redirect: '/404',
 	},
 ];

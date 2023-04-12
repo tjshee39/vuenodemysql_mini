@@ -1,12 +1,12 @@
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
-// !!! express ver <4.16
-// const bodyParser = require('body-parser');
 const history = require('connect-history-api-fallback');
 
+// !!! express ver < 4.16
+// const bodyParser = require('body-parser');
+
 const callapi = require('./callapi');
-// const db = require('./db');
 
 const app = express();
 
@@ -33,25 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/callapi', callapi);
 
-// app.get('/nameage-list', async function (req, res) {
-// 	const sqlQuery = 'SELECT * FROM NAMEAGE;';
-
-// 	db.query(sqlQuery, (err, result) => {
-// 		res.send(result);
-// 	});
-// });
-
-// app.post('/insert-nameage', async function (req, res) {
-// 	console.log('========================');
-// 	console.log('insertNameAge', req.body);
-
-// 	const nameAge = [req.body.name, req.body.age];
-
-// 	const sqlQuery = 'INSERT INTO NAMEAGE(NAME, AGE) VALUES(?, ?);';
-
-// 	db.query(sqlQuery, nameAge, (err, result) => {
-// 		res.send(result);
-// 	});
-// });
-
-module.exports = app;
+// 새로고침 했을 경우 404에러 처리
+// 빌드된 프로젝트의 index.html 반환
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
