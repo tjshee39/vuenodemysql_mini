@@ -7,7 +7,12 @@
 				<tr>
 					<td style="text-align: right">name</td>
 					<td>
-						<input type="text" v-model="name" :placeholder="dataInfo.name" />
+						<input
+							type="text"
+							v-model="name"
+							:placeholder="dataInfo.name"
+							maxlength="20"
+						/>
 					</td>
 				</tr>
 				<tr>
@@ -57,7 +62,7 @@ export default {
 			this.$axios
 				.get(`/callapi/nameage-info/${this.id}`)
 				.then(res => {
-					// api 호출시 앞에 슬래스 꼭 써주기
+					// api 호출시 앞에 슬래시 꼭 써주기
 					console.log(res.data[0]);
 					return res.data[0];
 				})
@@ -68,6 +73,8 @@ export default {
 				});
 		},
 		async updateInfo() {
+			// 동작에 대한 상태변수 전달
+			// state: update or delete
 			this.$axios
 				.post(`/callapi/nameage/${this.id}`, {
 					state: 'update',
@@ -75,7 +82,7 @@ export default {
 					age: this.age,
 				})
 				.then(res => {
-					console.log(res);
+					// console.log(res);
 					// 완료 시 목록 페이지로 이동
 					window.location.href = '/name-age-list';
 				});
@@ -84,7 +91,7 @@ export default {
 			this.$axios
 				.post(`/callapi/nameage/${this.id}`, { state: 'delete' })
 				.then(res => {
-					console.log(res);
+					// console.log(res);
 					// 완료 시 목록 페이지로 이동
 					window.location.href = '/name-age-list';
 				});

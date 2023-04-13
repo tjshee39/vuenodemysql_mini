@@ -9,7 +9,8 @@ const corsOptions = {
 	credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 };
 
-router.post('/insert-nameage', async function (req, res) {
+// insert
+router.post('/nameage', async function (req, res) {
 	try {
 		console.log('=======================================');
 		console.log('insert-nameage', req.body);
@@ -29,6 +30,7 @@ router.post('/insert-nameage', async function (req, res) {
 	}
 });
 
+// nameage data list
 router.get('/nameage-list', async function (req, res) {
 	try {
 		console.log('=======================================');
@@ -47,6 +49,7 @@ router.get('/nameage-list', async function (req, res) {
 	}
 });
 
+// data of id
 router.get('/nameage-info/:id', async function (req, res) {
 	try {
 		console.log('=======================================');
@@ -67,6 +70,7 @@ router.get('/nameage-info/:id', async function (req, res) {
 	}
 });
 
+// update or delete about id's info
 router.post('/nameage/:id', async function (req, res) {
 	try {
 		console.log('=======================================');

@@ -8,7 +8,7 @@
 			<table>
 				<tr>
 					<td style="text-align: right">name</td>
-					<td><input type="text" v-model="name" /></td>
+					<td><input type="text" v-model="name" maxlength="20" /></td>
 				</tr>
 				<tr>
 					<td style="text-align: right">age</td>
@@ -18,7 +18,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<button id="btn_insert" @click="insertData()">확인</button>
+						<button id="btn_insert" @click="insertData()">추가</button>
 					</td>
 				</tr>
 			</table>
@@ -44,7 +44,7 @@ export default {
 			console.log('age: ', this.age);
 
 			this.$axios
-				.post('callapi/insert-nameage', {
+				.post('callapi/nameage', {
 					name: this.name,
 					age: this.age,
 				})

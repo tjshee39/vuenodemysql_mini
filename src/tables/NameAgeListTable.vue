@@ -45,7 +45,7 @@ export default {
 					return res.data;
 				})
 				.then(data => {
-					console.log('data', data);
+					// console.log('data', data);
 					this.dataList = data;
 				});
 		},
