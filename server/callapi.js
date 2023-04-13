@@ -67,45 +67,62 @@ router.get('/nameage-info/:id', async function (req, res) {
 	}
 });
 
-router.post('/update-nameage/:id', async function (req, res) {
+router.post('/nameage/:id', async function (req, res) {
 	try {
 		console.log('=======================================');
-		console.log('update-nameage', req.body);
+		console.log('update/delete-nameage', req.body.state);
 
 		const { id } = req.params;
-		const nameAge = [req.body.name, req.body.age];
+		const { state, name, age } = req.body;
+		// const nameAge = [req.body.name, req.body.age];
 
-		const sqlQuery = `UPDATE NAMEAGE SET NAME=?, AGE=? WHERE id=${id}`;
+		let sqlQuery;
 
-		db.query(sqlQuery, nameAge, (err, result) => {
-			res.send(result);
-		});
+		if (state === 'update') {
+			console.log('update ··········');
+			sqlQuery = `UPDATE NAMEAGE SET NAME=?, AGE=? WHERE id=${id}`;
+
+			db.query(sqlQuery, [name, age], (err, result) => {
+				res.send(result);
+			});
+		} else {
+			console.log('delete ··········');
+			sqlQuery = `DELETE FROM NAMEAGE WHERE id=${id}`;
+
+			db.query(sqlQuery, (err, result) => {
+				res.send(result);
+			});
+		}
+
+		// db.query(sqlQuery, nameAge, (err, result) => {
+		// 	res.send(result);
+		// });
 	} catch (e) {
 		res.json({
-			message: 'update error',
+			message: 'update/delete error',
 			error: e,
 		});
 	}
 });
 
-router.post('/delete-nameage/:id', async function (req, res) {
-	try {
-		console.log('=======================================');
-		console.log('delete-nameage', req.params);
+// router.post('/delete-nameage/:id', async function (req, res) {
+// 	try {
+// 		console.log('=======================================');
+// 		console.log('delete-nameage', req.params);
 
-		const { id } = req.params;
+// 		const { id } = req.params;
 
-		const sqlQuery = `DELETE FROM NAMEAGE WHERE id=${id}`;
+// 		const sqlQuery = `DELETE FROM NAMEAGE WHERE id=${id}`;
 
-		db.query(sqlQuery, (err, result) => {
-			res.send(result);
-		});
-	} catch (e) {
-		res.json({
-			message: 'delete error',
-			error: e,
-		});
-	}
-});
+// 		db.query(sqlQuery, (err, result) => {
+// 			res.send(result);
+// 		});
+// 	} catch (e) {
+// 		res.json({
+// 			message: 'delete error',
+// 			error: e,
+// 		});
+// 	}
+// });
 
 module.exports = router;

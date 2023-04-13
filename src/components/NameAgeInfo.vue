@@ -48,6 +48,7 @@ export default {
 		$route: 'getInfo',
 	},
 	mounted() {
+		this.id = this.$route.params.id;
 		console.log('id', this.id, typeof this.id);
 		this.getInfo();
 	},
@@ -68,7 +69,8 @@ export default {
 		},
 		async updateInfo() {
 			this.$axios
-				.post(`/callapi/update-nameage/${this.id}`, {
+				.post(`/callapi/nameage/${this.id}`, {
+					state: 'update',
 					name: this.name,
 					age: this.age,
 				})
@@ -79,11 +81,13 @@ export default {
 				});
 		},
 		async deleteInfo() {
-			this.$axios.post(`/callapi/delete-nameage/${this.id}`).then(res => {
-				console.log(res);
-				// 완료 시 목록 페이지로 이동
-				window.location.href = '/name-age-list';
-			});
+			this.$axios
+				.post(`/callapi/nameage/${this.id}`, { state: 'delete' })
+				.then(res => {
+					console.log(res);
+					// 완료 시 목록 페이지로 이동
+					window.location.href = '/name-age-list';
+				});
 		},
 	},
 };
