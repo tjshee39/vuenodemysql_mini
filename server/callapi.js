@@ -13,7 +13,7 @@ const corsOptions = {
 router.post('/nameage', async function (req, res) {
 	try {
 		console.log('=======================================');
-		console.log('insert-nameage', req.body);
+		console.log('✏️insert-nameage', req.body);
 
 		const nameAge = [req.body.name, req.body.age];
 
@@ -34,7 +34,7 @@ router.post('/nameage', async function (req, res) {
 router.get('/nameage-list', async function (req, res) {
 	try {
 		console.log('=======================================');
-		console.log('nameage-list');
+		console.log('📜nameage-list');
 
 		const sqlQuery = 'SELECT * FROM NAMEAGE;';
 
@@ -53,7 +53,7 @@ router.get('/nameage-list', async function (req, res) {
 router.get('/nameage-info/:id', async function (req, res) {
 	try {
 		console.log('=======================================');
-		console.log('nameage-info', req.params);
+		console.log('🪪nameage-info', req.params);
 
 		const { id } = req.params;
 		const sqlQuery = `SELECT * FROM NAMEAGE WHERE id=${id};`;
@@ -74,9 +74,11 @@ router.get('/nameage-info/:id', async function (req, res) {
 router.post('/nameage/:id', async function (req, res) {
 	try {
 		console.log('=======================================');
-		console.log('update/delete-nameage', req.body.state);
+		console.log('✏️update/delete-nameage', req.body.state);
 
 		const { id } = req.params;
+
+		// state: update or delete
 		const { state, name, age } = req.body;
 		// const nameAge = [req.body.name, req.body.age];
 
