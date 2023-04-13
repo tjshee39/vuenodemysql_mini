@@ -5,13 +5,13 @@
 		<div class="input_form">
 			<table>
 				<tr>
-					<td>name</td>
+					<td style="text-align: right">name</td>
 					<td>
 						<input type="text" v-model="name" :placeholder="dataInfo.name" />
 					</td>
 				</tr>
 				<tr>
-					<td>age</td>
+					<td style="text-align: right">age</td>
 					<td>
 						<input
 							type="number"

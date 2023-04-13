@@ -10,7 +10,12 @@
 				<tr
 					v-for="(data01, index01) in dataList"
 					:key="index01"
-					@click="moveToInfo(data01.id)"
+					@click="
+						$router.push({
+							name: 'name-age-info',
+							params: { id: data01.id },
+						})
+					"
 				>
 					<td v-for="(data02, index02) in data01" :key="index02">
 						{{ data02 }}
@@ -44,9 +49,9 @@ export default {
 					this.dataList = data;
 				});
 		},
-		async moveToInfo(id) {
-			this.$router.push({ name: 'name-age-info', params: { id } });
-		},
+		// async moveToInfo(id) {
+		// 	this.$router.push({ name: 'name-age-info', params: { id } });
+		// },
 	},
 };
 </script>
@@ -87,5 +92,8 @@ table td {
 	border-radius: 10px 10px 0px 0px;
 	border-style: hidden;
 	box-shadow: 0 0 0 1px #000;
+}
+.data_table tr:hover {
+	background-color: #bbebd5;
 }
 </style>

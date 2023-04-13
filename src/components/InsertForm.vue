@@ -1,17 +1,17 @@
 <template>
 	<div class="insertform">
 		<h1>{{ msg }}</h1>
-		<p>DML(Data Multipulation Language)</p>
+		<p>DML(Data Manipulation Language)</p>
 		<p>:SELECT, <span id="insert">INSERT</span>, UPDATE, DELETE</p>
 
 		<div class="input_form">
 			<table>
 				<tr>
-					<td>name</td>
+					<td style="text-align: right">name</td>
 					<td><input type="text" v-model="name" /></td>
 				</tr>
 				<tr>
-					<td>age</td>
+					<td style="text-align: right">age</td>
 					<td>
 						<input type="number" min="0" v-model="age" />
 					</td>
@@ -84,7 +84,7 @@ a {
 	width: 200px;
 }
 input {
-	height: 20px;
+	padding: 10px;
 }
 button {
 	background-color: #42b983;
