@@ -1,4 +1,4 @@
-# vuenodemysql
+# vuenodemysql😎
 
 ## Project setup
 ```
